@@ -14,3 +14,11 @@ export async function createUser(data: CreateUserInput) {
     },
   });
 }
+
+export async function findUserByEmail(email: string) {
+  return await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+}

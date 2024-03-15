@@ -3,7 +3,8 @@ import fjwt from '@fastify/jwt';
 
 import appConfig from './configs/app-config';
 import userRoutes from './modules/user/user.route';
-import { userSchemas } from './modules/user/user.schema';
+import productRoutes from './modules/product/product.route';
+import { Schemas } from './utils/schema';
 
 export const server = Fastify();
 
@@ -26,11 +27,12 @@ server.get('/healthcheck', async function () {
 });
 
 async function main() {
-  for (const schema of userSchemas) {
+  for (const schema of Schemas) {
     server.addSchema(schema);
   }
 
   server.register(userRoutes, { prefix: 'api/users' });
+  server.register(productRoutes, { prefix: 'api/products' });
 
   try {
     await server.listen({ port: appConfig.port, host: '0.0.0.0' });

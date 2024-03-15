@@ -5,7 +5,7 @@ import {
   loginHandler,
   registerUserHandler,
 } from './user.controller';
-import { $ref } from './user.schema';
+import { $ref } from '../../utils/schema';
 
 export default async function userRoutes(server: FastifyInstance) {
   server.post(

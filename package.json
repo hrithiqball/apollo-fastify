@@ -1,32 +1,35 @@
 {
-	"name": "fastify-trpc",
-	"description": "A restful API with fastify and prisma",
-	"version": "1.0.0",
-	"author": {
-		"name": "Harith Iqbal",
-		"email": "hrithiqball@gmail.com"
-	},
-	"main": "index.js",
-	"scripts": {
-		"dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"keywords": [],
-	"license": "ISC",
-	"dependencies": {
-		"@prisma/client": "^5.11.0",
-		"fastify": "^4.26.2",
-		"fastify-jwt": "^4.2.0",
-		"fastify-zod": "^1.4.0",
-		"zod": "^3.22.4",
-		"zod-to-json-schema": "^3.22.4"
-	},
-	"devDependencies": {
-		"@types/node": "^20.11.27",
-		"prettier": "^3.2.5",
-		"sinon": "^17.0.1",
-		"ts-node": "^10.9.2",
-		"ts-node-dev": "^2.0.0",
-		"typescript": "^5.4.2"
-	}
+  "name": "fastify-trpc",
+  "description": "A restful API with fastify and prisma",
+  "version": "1.0.0",
+  "author": {
+    "name": "Harith Iqbal",
+    "email": "hrithiqball@gmail.com"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "fastify": "^4.26.2",
+    "fastify-jwt": "^4.2.0",
+    "fastify-zod": "^1.4.0",
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.27",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "sinon": "^17.0.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.2"
+  }
 }

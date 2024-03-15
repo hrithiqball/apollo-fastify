@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["fastify", "healthcheck", "Parens", "trpc", "tsnd"]
+  "cSpell.words": [
+    "datasource",
+    "fastify",
+    "healthcheck",
+    "Parens",
+    "trpc",
+    "tsnd"
+  ]
 }

@@ -1,42 +1,12 @@
-import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
-import fjwt from '@fastify/jwt';
+import buildServer from './server';
+import appConfig from './config/appConfig';
 
-import appConfig from './configs/app-config';
-import userRoutes from './modules/user/user.route';
-import productRoutes from './modules/product/product.route';
-import { Schemas } from './utils/schema';
-
-export const server = Fastify();
-
-server.register(fjwt, { secret: 'supersecret' });
-
-server.decorate(
-  'authenticate',
-  async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      await request.jwtVerify();
-    } catch (error) {
-      console.error(error);
-      return reply.send(error);
-    }
-  },
-);
-
-server.get('/healthcheck', async function () {
-  return { status: 'OK' };
-});
+const server = buildServer();
 
 async function main() {
-  for (const schema of Schemas) {
-    server.addSchema(schema);
-  }
-
-  server.register(userRoutes, { prefix: 'api/users' });
-  server.register(productRoutes, { prefix: 'api/products' });
-
   try {
-    await server.listen({ port: appConfig.port, host: '0.0.0.0' });
-    console.log(`Server listening on http://localhost:${appConfig.port}`);
+    await server.listen({ port: appConfig.PORT, host: '0.0.0.0' });
+    console.log(`Server listening on http://localhost:${appConfig.PORT}`);
   } catch (error) {
     console.error(error);
     process.exit(1);

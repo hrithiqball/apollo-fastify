@@ -6,7 +6,7 @@
     "name": "Harith Iqbal",
     "email": "hrithiqball@gmail.com"
   },
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
     "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,6 +26,7 @@
     "@types/node": "^20.11.27",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "prettier": "^3.2.5",
     "sinon": "^17.0.1",

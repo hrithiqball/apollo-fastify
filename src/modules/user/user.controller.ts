@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { createUser, findUserByEmail } from './user.service';
+import { createUser, findUserByEmail, findUsers } from './user.service';
 import { CreateUserInput, LoginInput } from './user.schema';
 import { verifyPassword } from '../../utils/hash';
 import { server } from '../../app';
@@ -53,4 +53,10 @@ export async function loginHandler(
     console.error(error);
     reply.code(500).send({ message: `Internal server error, ${error}` });
   }
+}
+
+export async function getUsersHandler() {
+  const users = await findUsers();
+
+  return users;
 }

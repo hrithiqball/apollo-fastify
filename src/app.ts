@@ -1,7 +1,7 @@
 import buildServer from './server';
 import appConfig from './config/appConfig';
 
-const server = buildServer();
+export const server = buildServer();
 
 async function main() {
   try {

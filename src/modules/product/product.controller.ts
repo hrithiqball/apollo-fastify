@@ -1,4 +1,5 @@
 import { FastifyRequest } from 'fastify';
+
 import { createProduct, getProducts } from './product.service';
 import { CreateProductInput } from './product.schema';
 

@@ -1,8 +1,10 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import jwt from 'jsonwebtoken';
+
 import { createUser, findUserByEmail, findUsers } from './user.service';
 import { CreateUserInput, LoginInput } from './user.schema';
 import { verifyPassword } from '../../utils/hash';
-import { server } from '../../app';
+import appConfig from '../../config/appConfig';
 
 export async function registerUserHandler(
   request: FastifyRequest<{ Body: CreateUserInput }>,
@@ -43,7 +45,11 @@ export async function loginHandler(
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password, salt, ...rest } = user;
 
-      return { accessToken: server.jwt.sign(rest) };
+      const accessToken = jwt.sign({ ...rest }, appConfig.SECRET, {
+        expiresIn: '1h',
+      });
+
+      return { accessToken };
     }
 
     return reply.code(401).send({

@@ -16,6 +16,7 @@
   "dependencies": {
     "@fastify/jwt": "^8.0.0",
     "@prisma/client": "^5.11.0",
+    "@trpc/server": "^10.45.2",
     "fastify": "^4.26.2",
     "fastify-jwt": "^4.2.0",
     "fastify-zod": "^1.4.0",
@@ -23,11 +24,13 @@
     "zod-to-json-schema": "^3.22.4"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.11.27",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
+    "jsonwebtoken": "^9.0.2",
     "prettier": "^3.2.5",
     "sinon": "^17.0.1",
     "ts-node": "^10.9.2",

@@ -14,12 +14,15 @@
   "keywords": [],
   "license": "ISC",
   "dependencies": {
+    "@apollo/server": "^4.10.1",
+    "@as-integrations/fastify": "^2.1.1",
     "@fastify/jwt": "^8.0.0",
     "@prisma/client": "^5.11.0",
     "@trpc/server": "^10.45.2",
     "fastify": "^4.26.2",
     "fastify-jwt": "^4.2.0",
     "fastify-zod": "^1.4.0",
+    "graphql": "^16.8.1",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.22.4"
   },

@@ -1,17 +1,28 @@
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
+import { ApolloServer, BaseContext } from '@apollo/server';
 import fastifyJwt from '@fastify/jwt';
+import fastifyApollo, {
+  fastifyApolloDrainPlugin,
+} from '@as-integrations/fastify';
 
 import productRoutes from './modules/product/product.route';
 import userRoutes from './modules/user/user.route';
 import { Schemas } from './utils/schema';
 import appConfig from './config/appConfig';
+import { typeDefs } from './graphql/typedef';
+import { resolvers } from './graphql/resolvers';
 
 export default function buildServer() {
-  const server = Fastify();
+  const fastify = Fastify();
+  const apollo = new ApolloServer<BaseContext>({
+    typeDefs,
+    resolvers,
+    plugins: [fastifyApolloDrainPlugin(fastify)],
+  });
 
-  server.register(fastifyJwt, { secret: appConfig.SECRET });
+  fastify.register(fastifyJwt, { secret: appConfig.SECRET });
 
-  server.decorate(
+  fastify.decorate(
     'authenticate',
     async (request: FastifyRequest, reply: FastifyReply) => {
       try {
@@ -23,16 +34,20 @@ export default function buildServer() {
     },
   );
 
-  server.get('/healthcheck', async function () {
+  fastify.get('/healthcheck', async function () {
     return { status: 'OK' };
   });
 
   for (const schema of Schemas) {
-    server.addSchema(schema);
+    fastify.addSchema(schema);
   }
 
-  server.register(userRoutes, { prefix: 'api/users' });
-  server.register(productRoutes, { prefix: 'api/products' });
+  fastify.register(userRoutes, { prefix: 'api/users' });
+  fastify.register(productRoutes, { prefix: 'api/products' });
 
-  return server;
+  apollo.start().then(() => {
+    fastify.register(fastifyApollo(apollo), { prefix: 'graphql' });
+  });
+
+  return fastify;
 }

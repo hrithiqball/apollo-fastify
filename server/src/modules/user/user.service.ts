@@ -1,4 +1,4 @@
-import prisma from '../../utils/db';
+import { prisma } from '../../utils/db';
 import { hashPassword } from '../../utils/hash';
 import { CreateUserInput } from './user.schema';
 

@@ -5,13 +5,12 @@ import cors from '@fastify/cors';
 import fastifyApollo, {
   fastifyApolloDrainPlugin,
 } from '@as-integrations/fastify';
+import { resolvers, typeDefs } from './graphql';
 
 import productRoutes from './modules/product/product.route';
 import userRoutes from './modules/user/user.route';
 import { Schemas } from './utils/schema';
 import appConfig from './config/appConfig';
-import { typeDefs } from './graphql/typedef';
-import { resolvers } from './graphql/resolvers';
 import { mongo } from './utils/db';
 import carRoutes from './modules/mongo/car/car.route';
 

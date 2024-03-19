@@ -8,6 +8,7 @@ export async function createCar(data: CreateCarInput) {
       brand: data.brand,
       color: data.color,
       model: data.model,
+      ownerId: data.ownerId,
     };
 
     const collection = mongo.db('scientia').collection('cars');

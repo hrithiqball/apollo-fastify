@@ -19,11 +19,7 @@ export default async function carRoutes(server: FastifyInstance) {
   server.get(
     '/',
     {
-      schema: {
-        response: {
-          200: $ref('carsResponseSchema'),
-        },
-      },
+      schema: {},
     },
     getCarsHandler,
   );

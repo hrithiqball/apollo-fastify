@@ -1,5 +1,10 @@
+import { ObjectId } from 'mongodb';
 import { CreateCarInput } from '../modules/mongo/car/car.schema';
-import { createCar, getCars } from '../modules/mongo/car/car.service';
+import {
+  createCar,
+  deleteCar,
+  getCars,
+} from '../modules/mongo/car/car.service';
 
 export const resolvers = {
   Query: {
@@ -8,6 +13,7 @@ export const resolvers = {
   Mutation: {
     addCar: (_: unknown, { input }: { input: CreateCarInput }) =>
       createCar(input),
+    deleteCar: (_: unknown, { _id }: { _id: ObjectId }) => deleteCar(_id),
   },
 };
 
@@ -30,5 +36,6 @@ export const typeDefs = `#graphql
 
   type Mutation {
     addCar(input: CarInput): Car!
+    deleteCar(_id: ID!): String!
   }
 `;

@@ -1,10 +1,10 @@
 import { CreateProductInput } from './product.schema';
-import db from '../../utils/db';
+import { prisma } from '../../utils/db';
 
 export async function createProduct(
   data: CreateProductInput & { ownerId: number },
 ) {
-  return await db.product.create({
+  return await prisma.product.create({
     data: {
       ...data,
       updatedAt: new Date(),
@@ -13,7 +13,7 @@ export async function createProduct(
 }
 
 export async function getProducts() {
-  return await db.product.findMany({
+  return await prisma.product.findMany({
     select: {
       id: true,
       content: true,

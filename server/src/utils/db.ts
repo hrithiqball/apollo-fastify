@@ -1,5 +1,13 @@
 import { PrismaClient } from '@prisma/client';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+import appConfig from '../config/appConfig';
 
-const prisma = new PrismaClient();
+export const mongo = new MongoClient(appConfig.MONGO_URI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
 
-export default prisma;
+export const prisma = new PrismaClient();

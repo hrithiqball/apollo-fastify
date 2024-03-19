@@ -1,0 +1,16 @@
+type User {
+  id: ID!
+  email: String!
+  name: String
+  products: [Product]
+}
+
+type Product {
+  id: ID!
+  createdAt: String
+  updatedAt: String
+  title: String!
+  content: String
+  price: Float
+  owner: User
+}

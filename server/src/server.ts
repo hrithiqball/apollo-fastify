@@ -12,6 +12,8 @@ import { Schemas } from './utils/schema';
 import appConfig from './config/appConfig';
 import { typeDefs } from './graphql/typedef';
 import { resolvers } from './graphql/resolvers';
+import { mongo } from './utils/db';
+import carRoutes from './modules/mongo/car/car.route';
 
 export default function buildServer() {
   const fastify = Fastify();
@@ -20,6 +22,14 @@ export default function buildServer() {
     resolvers,
     plugins: [fastifyApolloDrainPlugin(fastify)],
   });
+
+  mongo
+    .connect()
+    .then(() => {
+      mongo.db('admin').command({ ping: 1 });
+      console.log('Connected to the mongo database!');
+    })
+    .catch(error => console.error(error));
 
   fastify.register(fastifyJwt, { secret: appConfig.SECRET });
   fastify.register(cors, {
@@ -48,6 +58,7 @@ export default function buildServer() {
 
   fastify.register(userRoutes, { prefix: 'api/users' });
   fastify.register(productRoutes, { prefix: 'api/products' });
+  fastify.register(carRoutes, { prefix: 'api/cars' });
 
   apollo.start().then(() => {
     fastify.register(fastifyApollo(apollo), { prefix: 'graphql' });

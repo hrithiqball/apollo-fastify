@@ -1,12 +1,13 @@
 {
-  "cSpell.words": [
-    "datasource",
-    "fastify",
-    "fjwt",
-    "healthcheck",
-    "Parens",
-    "trpc",
-    "tsnd"
-  ],
-  "material-icon-theme.activeIconPack": "none"
+	"cSpell.words": [
+		"datasource",
+		"fastify",
+		"fjwt",
+		"healthcheck",
+		"Parens",
+		"tailwindcss",
+		"trpc",
+		"tsnd"
+	],
+	"material-icon-theme.activeIconPack": "none"
 }

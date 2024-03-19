@@ -1,6 +1,7 @@
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
 import { ApolloServer, BaseContext } from '@apollo/server';
 import fastifyJwt from '@fastify/jwt';
+import cors from '@fastify/cors';
 import fastifyApollo, {
   fastifyApolloDrainPlugin,
 } from '@as-integrations/fastify';
@@ -21,6 +22,9 @@ export default function buildServer() {
   });
 
   fastify.register(fastifyJwt, { secret: appConfig.SECRET });
+  fastify.register(cors, {
+    origin: true,
+  });
 
   fastify.decorate(
     'authenticate',

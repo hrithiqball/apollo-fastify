@@ -1,16 +1,16 @@
 import { ObjectId } from 'mongodb';
-import { CarSchema, CreateCarInput } from '../modules/mongo/car/car.schema';
+import { CarSchema, CreateCarInput } from '../modules/vehicle/vehicle.schema';
 import {
   createCar,
   deleteCar,
   getCars,
-} from '../modules/mongo/car/car.service';
-import { CreateOwnerInput } from '../modules/mongo/owner/owner.schema';
+} from '../modules/vehicle/vehicle.service';
+import { CreateOwnerInput } from '../modules/owner/owner.schema';
 import {
   createOwner,
   getOwnerById,
   getOwners,
-} from '../modules/mongo/owner/owner.service';
+} from '../modules/owner/owner.service';
 
 export const resolvers = {
   Query: {
@@ -31,8 +31,7 @@ export const resolvers = {
     },
   },
 };
-
-export const typeDefs = `#graphql
+export const typeDefs = /* GraphQL */ `
   type Car {
     _id: ID
     brand: String

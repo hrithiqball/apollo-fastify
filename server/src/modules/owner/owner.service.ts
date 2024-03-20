@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { mongo } from '../../../utils/db';
+import { mongo } from '../../utils/db';
 import { CreateOwnerInput } from './owner.schema';
 
 export async function createOwner(input: CreateOwnerInput) {

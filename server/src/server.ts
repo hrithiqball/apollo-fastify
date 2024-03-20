@@ -7,12 +7,13 @@ import fastifyApollo, {
 } from '@as-integrations/fastify';
 import { resolvers, typeDefs } from './graphql';
 
-import productRoutes from './modules/product/product.route';
+import productRoutes from './modules/asset/product.route';
 import userRoutes from './modules/user/user.route';
 import { Schemas } from './utils/schema';
 import appConfig from './config/appConfig';
 import { mongo } from './utils/db';
-import carRoutes from './modules/mongo/car/car.route';
+import carRoutes from './modules/vehicle/vehicle.route';
+import entryRoutes from './modules/entry/entry.route';
 
 export default function buildServer() {
   const fastify = Fastify();
@@ -58,6 +59,7 @@ export default function buildServer() {
   fastify.register(userRoutes, { prefix: 'api/users' });
   fastify.register(productRoutes, { prefix: 'api/products' });
   fastify.register(carRoutes, { prefix: 'api/cars' });
+  fastify.register(entryRoutes, { prefix: 'api/entries' });
 
   apollo.start().then(() => {
     fastify.register(fastifyApollo(apollo), { prefix: 'graphql' });

@@ -2,7 +2,7 @@ import {
   createProductSchema,
   productResponseSchema,
   productsResponseSchema,
-} from '../modules/product/product.schema';
+} from '../modules/asset/product.schema';
 import {
   createUserResponseSchema,
   createUserSchema,
@@ -13,7 +13,7 @@ import {
   createCarSchema,
   carResponseSchema,
   carsResponseSchema,
-} from '../modules/mongo/car/car.schema';
+} from '../modules/vehicle/vehicle.schema';
 import { buildJsonSchemas } from 'fastify-zod';
 
 export const { schemas: Schemas, $ref } = buildJsonSchemas({

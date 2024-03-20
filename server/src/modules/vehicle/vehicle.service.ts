@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
-import { mongo } from '../../../utils/db';
-import { CreateCarInput } from './car.schema';
+import { mongo } from '../../utils/db';
+import { CreateCarInput } from './vehicle.schema';
 
 export async function createCar(data: CreateCarInput) {
   try {

@@ -1,19 +1,19 @@
 import { FastifyInstance } from 'fastify';
-import { createCarHandler, getCarsHandler } from './vehicle.controller';
+import { createVehicleHandler, getVehiclesHandler } from './vehicle.controller';
 import { $ref } from '../../utils/schema';
 
-export default async function carRoutes(server: FastifyInstance) {
+export default async function vehicleRoutes(server: FastifyInstance) {
   server.post(
     '/',
     {
       schema: {
-        body: $ref('createCarSchema'),
+        body: $ref('createVehicleSchema'),
         response: {
-          201: $ref('carResponseSchema'),
+          201: $ref('vehicleResponseSchema'),
         },
       },
     },
-    createCarHandler,
+    createVehicleHandler,
   );
 
   server.get(
@@ -21,6 +21,6 @@ export default async function carRoutes(server: FastifyInstance) {
     {
       schema: {},
     },
-    getCarsHandler,
+    getVehiclesHandler,
   );
 }

@@ -10,9 +10,8 @@ export async function registerUserHandler(
   request: FastifyRequest<{ Body: CreateUserInput }>,
   reply: FastifyReply,
 ) {
-  const body = request.body;
-
   try {
+    const body = request.body;
     const user = await createUser(body);
 
     return reply.code(201).send(user);

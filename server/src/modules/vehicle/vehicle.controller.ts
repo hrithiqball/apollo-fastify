@@ -1,17 +1,23 @@
 import { FastifyRequest } from 'fastify';
-import { createCar, getCars } from './vehicle.service';
-import { CreateCarInput } from './vehicle.schema';
+import { createVehicle, getVehicles } from './vehicle.service';
+import { CreateVehicleInput } from './vehicle.schema';
 
-export async function createCarHandler(
-  request: FastifyRequest<{ Body: CreateCarInput }>,
+export async function createVehicleHandler(
+  request: FastifyRequest<{ Body: CreateVehicleInput }>,
 ) {
-  const car = await createCar(request.body);
-
-  return car;
+  try {
+    return await createVehicle(request.body);
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error creating vehicle');
+  }
 }
 
-export async function getCarsHandler() {
-  const cars = await getCars();
-
-  return cars;
+export async function getVehiclesHandler() {
+  try {
+    return await getVehicles();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error getting vehicles');
+  }
 }

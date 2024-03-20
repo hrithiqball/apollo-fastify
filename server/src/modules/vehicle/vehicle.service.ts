@@ -1,32 +1,44 @@
 import { ObjectId } from 'mongodb';
 import { mongo } from '../../utils/db';
-import { CreateCarInput } from './vehicle.schema';
+import { CreateVehicleInput } from './vehicle.schema';
 
-export async function createCar(data: CreateCarInput) {
+export async function createVehicle(data: CreateVehicleInput) {
   try {
-    const newCar = {
+    const newVehicle = {
       brand: data.brand,
       color: data.color,
       model: data.model,
       ownerId: data.ownerId,
     };
 
-    const collection = mongo.db('scientia').collection('cars');
-    return collection.insertOne(newCar);
+    const collection = mongo.db('scientia').collection('vehicles');
+    await collection.insertOne(newVehicle);
+    return newVehicle;
   } catch (error) {
     console.error(error);
-    throw new Error('Error creating car');
+    throw new Error('Error creating vehicle');
   }
 }
 
-export async function getCars() {
-  const collection = mongo.db('scientia').collection('cars');
+export async function getVehicles() {
+  try {
+    const collection = mongo.db('scientia').collection('vehicles');
 
-  return collection.find({}).toArray();
+    return collection.find({}).toArray();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error getting vehicles');
+  }
 }
 
-export async function deleteCar(_id: ObjectId) {
-  const collection = mongo.db('scientia').collection('cars');
-  await collection.deleteOne({ _id });
-  return 'Car deleted successfully!';
+export async function deleteVehicle(_id: ObjectId) {
+  try {
+    const collection = mongo.db('scientia').collection('vehicles');
+    await collection.deleteOne({ _id });
+
+    return 'Vehicle deleted successfully!';
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error deleting vehicle');
+  }
 }

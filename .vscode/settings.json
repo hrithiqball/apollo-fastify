@@ -5,9 +5,11 @@
 		"fjwt",
 		"healthcheck",
 		"Parens",
+		"scientia",
 		"tailwindcss",
 		"trpc",
-		"tsnd"
+		"tsnd",
+		"upstash"
 	],
 	"material-icon-theme.activeIconPack": "none"
 }

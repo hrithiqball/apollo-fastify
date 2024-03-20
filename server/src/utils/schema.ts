@@ -10,9 +10,9 @@ import {
   loginSchema,
 } from '../modules/user/user.schema';
 import {
-  createCarSchema,
-  carResponseSchema,
-  carsResponseSchema,
+  createVehicleSchema,
+  vehicleResponseSchema,
+  vehiclesResponseSchema,
 } from '../modules/vehicle/vehicle.schema';
 import { buildJsonSchemas } from 'fastify-zod';
 
@@ -24,7 +24,7 @@ export const { schemas: Schemas, $ref } = buildJsonSchemas({
   createUserResponseSchema,
   loginSchema,
   loginResponseSchema,
-  createCarSchema,
-  carResponseSchema,
-  carsResponseSchema,
+  createVehicleSchema,
+  vehicleResponseSchema,
+  vehiclesResponseSchema,
 });

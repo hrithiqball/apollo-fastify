@@ -1,9 +1,12 @@
 import { ObjectId } from 'mongodb';
-import { CarSchema, CreateCarInput } from '../modules/vehicle/vehicle.schema';
 import {
-  createCar,
-  deleteCar,
-  getCars,
+  VehicleSchema,
+  CreateVehicleInput,
+} from '../modules/vehicle/vehicle.schema';
+import {
+  createVehicle,
+  deleteVehicle,
+  getVehicles,
 } from '../modules/vehicle/vehicle.service';
 import { CreateOwnerInput } from '../modules/owner/owner.schema';
 import {
@@ -14,25 +17,26 @@ import {
 
 export const resolvers = {
   Query: {
-    cars: () => getCars(),
+    vehicles: () => getVehicles(),
     owners: () => getOwners(),
   },
   Mutation: {
-    addCar: (_: unknown, { input }: { input: CreateCarInput }) =>
-      createCar(input),
-    deleteCar: (_: unknown, { _id }: { _id: ObjectId }) => deleteCar(_id),
+    createVehicle: (_: unknown, { input }: { input: CreateVehicleInput }) =>
+      createVehicle(input),
+    deleteVehicle: (_: unknown, { _id }: { _id: ObjectId }) =>
+      deleteVehicle(_id),
     addOwner: (_: unknown, { input }: { input: CreateOwnerInput }) =>
       createOwner(input),
   },
-  Car: {
-    owner: async (parent: CarSchema) => {
+  Vehicle: {
+    owner: async (parent: VehicleSchema) => {
       if (!parent.ownerId) return null;
       return await getOwnerById(parent.ownerId);
     },
   },
 };
 export const typeDefs = /* GraphQL */ `
-  type Car {
+  type Vehicle {
     _id: ID
     brand: String
     color: String
@@ -46,7 +50,7 @@ export const typeDefs = /* GraphQL */ `
     name: String
   }
 
-  input CarInput {
+  input VehicleInput {
     brand: String
     color: String
     model: String
@@ -58,13 +62,13 @@ export const typeDefs = /* GraphQL */ `
   }
 
   type Query {
-    cars: [Car]
+    vehicles: [Vehicle]
     owners: [Owner]
   }
 
   type Mutation {
-    addCar(input: CarInput): Car!
-    deleteCar(_id: ID!): String!
+    createVehicle(input: VehicleInput): Vehicle!
+    deleteVehicle(_id: ID!): String!
     addOwner(input: OwnerInput): Owner!
   }
 `;

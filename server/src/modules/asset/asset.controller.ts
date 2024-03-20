@@ -1,7 +1,7 @@
 import { FastifyRequest } from 'fastify';
 
-import { createProduct, getProducts } from './product.service';
-import { CreateProductInput } from './product.schema';
+import { createProduct, getProducts } from './asset.service';
+import { CreateProductInput } from './asset.schema';
 
 export async function createProductHandler(
   request: FastifyRequest<{ Body: CreateProductInput }>,

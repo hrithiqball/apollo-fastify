@@ -7,7 +7,7 @@ import fastifyApollo, {
 } from '@as-integrations/fastify';
 import { resolvers, typeDefs } from './graphql';
 
-import productRoutes from './modules/asset/product.route';
+import productRoutes from './modules/asset/asset.route';
 import userRoutes from './modules/user/user.route';
 import { Schemas } from './utils/schema';
 import appConfig from './config/appConfig';

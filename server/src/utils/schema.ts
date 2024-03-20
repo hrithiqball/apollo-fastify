@@ -2,7 +2,7 @@ import {
   createProductSchema,
   productResponseSchema,
   productsResponseSchema,
-} from '../modules/asset/product.schema';
+} from '../modules/asset/asset.schema';
 import {
   createUserResponseSchema,
   createUserSchema,

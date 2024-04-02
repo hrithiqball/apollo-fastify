@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import { createProductHandler, getProductsHandler } from './asset.controller';
+import { createProductHandler, getProductsHandler } from './product.controller';
 import { $ref } from '../../utils/schema';
 
 export default async function productRoutes(server: FastifyInstance) {

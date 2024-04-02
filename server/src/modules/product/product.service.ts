@@ -1,4 +1,4 @@
-import { CreateProductInput } from './asset.schema';
+import { CreateProductInput } from './product.schema';
 import { prisma } from '../../utils/db';
 
 export async function createProduct(

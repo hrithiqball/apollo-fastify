@@ -16,6 +16,8 @@ import productRoutes from './modules/product/product.route';
 import vehicleRoutes from './modules/vehicle/vehicle.route';
 import entryRoutes from './modules/entry/entry.route';
 import { mongo } from './utils/db';
+import fastifyWebsocket from '@fastify/websocket';
+import websocketRoutes from './websocket/route';
 
 startServer();
 
@@ -34,6 +36,7 @@ async function startServer() {
     server.register(fastifyApollo(apollo), { prefix: '/graphql' });
     server.register(fastifyJwt, { secret: appConfig.SECRET });
     server.register(fastifyCors, { origin: true });
+    server.register(fastifyWebsocket);
     server.register(fastifyFormbody);
     server.register(fastifyHelmet);
 
@@ -60,6 +63,8 @@ async function startServer() {
     server.register(productRoutes, { prefix: '/api/product' });
     server.register(vehicleRoutes, { prefix: '/api/vehicle' });
     server.register(entryRoutes, { prefix: '/api/entry' });
+
+    server.register(websocketRoutes, { prefix: '/abc' });
 
     server.setErrorHandler(error => {
       server.log.error(error);

@@ -10,13 +10,13 @@ import {
   loginSchema,
 } from '../modules/user/user.schema';
 import {
-  createCarSchema,
-  carResponseSchema,
-  carsResponseSchema,
-} from '../modules/mongo/car/car.schema';
+  createVehicleSchema,
+  vehicleResponseSchema,
+  vehiclesResponseSchema,
+} from '../modules/vehicle/vehicle.schema';
 import { buildJsonSchemas } from 'fastify-zod';
 
-export const { schemas: Schemas, $ref } = buildJsonSchemas({
+export const { schemas: schemas, $ref } = buildJsonSchemas({
   createProductSchema,
   productResponseSchema,
   productsResponseSchema,
@@ -24,7 +24,7 @@ export const { schemas: Schemas, $ref } = buildJsonSchemas({
   createUserResponseSchema,
   loginSchema,
   loginResponseSchema,
-  createCarSchema,
-  carResponseSchema,
-  carsResponseSchema,
+  createVehicleSchema,
+  vehicleResponseSchema,
+  vehiclesResponseSchema,
 });

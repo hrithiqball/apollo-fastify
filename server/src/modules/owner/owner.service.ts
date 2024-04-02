@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import { mongo } from '../../../utils/db';
+import { mongo } from '../../utils/db';
 import { CreateOwnerInput } from './owner.schema';
 
 export async function createOwner(input: CreateOwnerInput) {
@@ -19,16 +19,26 @@ export async function createOwner(input: CreateOwnerInput) {
 }
 
 export async function getOwners() {
-  const collection = mongo.db('scientia').collection('owners');
+  try {
+    const collection = mongo.db('scientia').collection('owners');
 
-  return collection.find({}).toArray();
+    return collection.find({}).toArray();
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error getting owners');
+  }
 }
 
 export async function getOwnerById(id: string) {
-  const collection = mongo.db('scientia').collection('owners');
+  try {
+    const collection = mongo.db('scientia').collection('owners');
 
-  const _id = new ObjectId(id);
-  const owner = await collection.findOne({ _id });
+    const _id = new ObjectId(id);
+    const owner = await collection.findOne({ _id });
 
-  return owner;
+    return owner;
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error getting owner');
+  }
 }
